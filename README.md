@@ -73,13 +73,9 @@ docker-compose up -d nginx app_1
 
 You can now visit `http://localhost:3002` to validate the configuration.
 
-## Credits
+### Present user information from the identity token 
 
-- [Configure NGINX and Keycloak to enable SSO for proxied applications](https://kevalnagda.github.io/configure-nginx-and-keycloak-to-enable-sso-for-proxied-applications)
-
-### Retrieve few user information from the identity token and display them to the user / per-app user authentication
-
-Let's display few user information retrieved from the identiy token. App_2 runs behind an appache server (port=4090) will take care about this. 
+Let's display few user information retrieved from Keycloak identiy token. The NGINX will be configured to do so and forwoard this information as HTTP headers to the application App_2 runs behind an appache server (port=4090). 
 
 1. The app_2 is added to docker-compose.yml file as new image, where the Appache2 server image is used and three files are mounted: aap.conf, index.html and user.shtml
 2. In the nginx-roles.con.template file, three attributes are abstucted fromt the ID token: user ID, user name and user email.  
@@ -100,4 +96,7 @@ docker-compose up -d nginx app_2
     :information_source: 1 role = 1 app
 
 Now you can now visit `http://localhost:4090/user.shtml` to validate the configuration and to see the user information.
- 
+
+## Credits
+
+- [Configure NGINX and Keycloak to enable SSO for proxied applications](https://kevalnagda.github.io/configure-nginx-and-keycloak-to-enable-sso-for-proxied-applications)

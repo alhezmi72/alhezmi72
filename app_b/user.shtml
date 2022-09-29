@@ -1,0 +1,12 @@
+<html>
+<head>
+<title>Hello User</title>
+</head>
+<body>
+<p>Hello <!--#echo var=HTTP_X_NAME -->!</p>
+<p>You authenticated as: <!--#echo var=HTTP_X_USER --></p>
+<p>Your email address is: <!--#echo var=HTTP_X_EMAIL --></p>
+<p>Environment:</p>
+<p><!--#printenv -->!</p>
+</body>
+</html>

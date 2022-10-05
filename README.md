@@ -68,17 +68,18 @@ In our [docker-compose](./docker-compose.yml) configuration, edit the NGINX conf
 Start NGINX and the app :
 
 ```bash
-docker-compose up -d nginx app_1
+    docker-compose up -d nginx app_1
 ```
 
 You can now visit `http://localhost:3002` to validate the configuration.
 
 ### Present user information from the identity token 
 
-Let's display few user information retrieved from Keycloak identiy token. The NGINX will be configured to do so and forwoard this information as HTTP headers to the application App_2 runs behind an appache server (port=4090). 
+Let's display few user information retrieved from Keycloak identiy token. The NGINX will be configured to do so and forwoard this information as HTTP headers to the application App_2 runs behind an apache server (port=4090). 
 
-1. The app_2 is added to docker-compose.yml file as new image, where the Appache2 server image is used and three files are mounted: aap.conf, index.html and user.shtml
+1. The app_2 is added to docker-compose.yml file as new image, where the Apache2 server image is used and three files are mounted: aap.conf, index.html and user.shtml
 2. In the nginx-roles.con.template file, three attributes are abstucted fromt the ID token: user ID, user name and user email.  
+
 In LUA block: 
 
 access_by_lua {
@@ -95,7 +96,7 @@ docker-compose up -d nginx app_2
 ```
     :information_source: 1 role = 1 app
 
-Now you can now visit `http://localhost:4090/user.shtml` to validate the configuration and to see the user information.
+Now you can visit `http://localhost:4090/user.shtml` to validate the configuration and to see the user information.
 
 ## Credits
 

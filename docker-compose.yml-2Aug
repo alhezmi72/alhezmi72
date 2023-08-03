@@ -10,12 +10,10 @@ services:
         ports:
             - 3002:3002
             - 4090:4090
-            - 8000:8000
         volumes: 
             - ./logs:/var/log/nginx
-            - ./nginx-app-1.conf.template:/etc/nginx/conf.d/nginx.conf.template
-        #    - ./nginx-app-2.conf.template:/etc/nginx/conf.d/nginx.conf.template
-        #   - ./nginx-roles.conf.template:/etc/nginx/conf.d/nginx.conf.template 
+        #    - ./nginx-roles.conf.template:/etc/nginx/conf.d/nginx.conf.template
+            - ./nginx.conf.template:/etc/nginx/conf.d/nginx.conf.template
         environment:
             KEYCLOAK_INTERNAL_ENDPOINT: ${KEYCLOAK_INTERNAL_ENDPOINT}
             KEYCLOAK_EXTERNAL_ENDPOINT: ${KEYCLOAK_EXTERNAL_ENDPOINT}
@@ -63,14 +61,6 @@ services:
             - ./app_b/app.conf:/usr/local/apache2/conf/httpd.conf 
             - ./app_b/index.html:/usr/local/apache2/htdocs/index.html 
             - ./app_b/user.shtml:/usr/local/apache2/htdocs/user.shtml 
-    app_3:
-        image: node:alpine
-        build: /Users/adela/Documents/development/web/user-roles-management-web-vue/.
-        working_dir: /usr/app
-        command: npm run dev
-        volumes:
-            - /Users/adela/Documents/development/web/user-roles-management-web-vue/.:/usr/app/
-            - /user/app/node_modules
-        tty: true
+        
 volumes:
     postgres_data:

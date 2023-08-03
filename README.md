@@ -6,6 +6,14 @@ Setting NGINX as a reverse proxy with Keycloak SSO in front of your web applicat
 
 ## Getting started
 
+This setup build a cluster of Docker components that demonstrate how to support SSO for a set of applications (app_1, app_2 and app_3) using a reverse proxy and Keycloak. 
+These applications are: 
+1. app_1: simple NGINX http proxy. 
+2. app_2: simple Apache proxy with a page that retrieve and render user information from http headers based on Keycloak token. 
+3. app_3: A web application that is developed using Vue framework and interacts with two microservices (user roles management). 
+
+Note that the app_3 should be accessible to demonstrate the functionalities.  
+
 ### Configuring Keycloak
 
 1. Set-up `.env` and edit variable values
@@ -39,10 +47,20 @@ With this method, being a registered user is sufficient to access your apps.
 If you choose this method, you're already set. Just run :
 
 ```bash
-docker-compose up -d nginx app_1
+docker-compose up -d nginx app_1 
 ```
 
 You can now visit `http://localhost:3002` to validate the configuration.
+
+### Add user authentication for a web frontend application 
+This section describes how to add user authentication function for the app_3 to support SSO for two microservices that implement the user roles management. 
+The app_3 source code should be accessible for the [docker-compose](./docker-compose.yml). The related mount path should be configured in the app_3 section.  
+
+In our [docker-compose](./docker-compose.yml) configuration, edit the NGINX configuration mount point to be `./nginx-app-3.conf.template` instead of `./nginx.conf.template`.
+
+```bash
+docker-compose up -d nginx app_1 app_3
+```
 
 ### Role-based / per-app user authentication
 

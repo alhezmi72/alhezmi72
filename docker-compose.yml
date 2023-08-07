@@ -13,8 +13,8 @@ services:
             - 8000:8000
         volumes: 
             - ./logs:/var/log/nginx
-            - ./nginx-app-1.conf.template:/etc/nginx/conf.d/nginx.conf.template
-        #    - ./nginx-app-2.conf.template:/etc/nginx/conf.d/nginx.conf.template
+        #    - ./nginx-app-1.conf.template:/etc/nginx/conf.d/nginx.conf.template
+            - ./nginx-app-2.conf.template:/etc/nginx/conf.d/nginx.conf.template
         #   - ./nginx-roles.conf.template:/etc/nginx/conf.d/nginx.conf.template 
         environment:
             KEYCLOAK_INTERNAL_ENDPOINT: ${KEYCLOAK_INTERNAL_ENDPOINT}
